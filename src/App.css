@@ -4,6 +4,44 @@
   box-sizing: border-box;
 }
 
+body{
+  width: 100vw;
+  height: 100vh;
+  background-color: mediumseagreen;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.container{
+ min-height: 500px;
+ min-width: 300px;
+ background-color: white;
+ border-radius: 10px;
+ display: flex;
+ padding: 10px;
+ /* align-items: center; */
+ /* justify-content: center; */
+ flex-direction: column;
+}
+
+.container h2{
+  margin: 10px;
+}
+
+.container input{
+  outline: none;
+  border: 1px solid black;
+  padding: 5px;
+  font-size: 1.1rem;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+.container ul li{
+  list-style-type: none;
+}
+
 
 
  

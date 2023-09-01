@@ -84,9 +84,9 @@ function handleDlt(e, index){
 
   return ( 
       <div className='container'>  
-           <div>Make Your List.</div>
+           <h2>Make Your List.</h2>
            <div className='form'> 
-           <input type='text' value={inputValue} onChange={(e) => {setInputValue(e.target.value)}}></input>
+           <input placeholder="Write Your to do..." type='text' value={inputValue} onChange={(e) => {setInputValue(e.target.value)}}></input>
            <button onClick={e => handleClick(e)}>Add</button>
            </div>
 
