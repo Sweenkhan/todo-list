@@ -6,12 +6,13 @@ import './App.css'
 function App() { 
   
   const [inputValue, setInputValue] = useState("")
-  const [list, setList] = useState([])
+  const [list, setList] = useState([]);
+  const [edit, setEdit] = useState(false)
 
 
   function handleClick(e){
-      e.preventDefault();
-      console.log(inputValue)
+      e.preventDefault(); 
+
       setList([...list, inputValue])
       setInputValue("")
   }
@@ -19,11 +20,22 @@ function App() {
 
   function handleDlt(e, index){
      e.preventDefault();
-     console.log(index)
+     const filter = list.filter((li, listIndex) => {
+          return listIndex !== index
+     })
+
+     setList(filter)
   }
 
 
-  
+
+
+  function handleEdit(){
+
+  }
+
+
+
  console.log(list)
   return ( 
       <div className='container'>  
@@ -37,7 +49,12 @@ function App() {
 
               {
                list &&   list.map((value, index) => {
-                    return (<li key={index}>{value}<button >Edit</button> <button onClick={e=>{handleDlt(e, index)}}>Delete</button></li> )
+                    return (
+                      <li key={index}>{value}
+                    <button onClick={(e) => handleEdit(e, index)}>Edit</button> 
+                    <button onClick={e=>{handleDlt(e, index)}}>Delete</button>
+                    </li> 
+                    )
                   })
               }
 
