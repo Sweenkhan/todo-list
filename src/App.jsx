@@ -17,7 +17,7 @@ function App() {
   function handleClick(e){
       e.preventDefault(); 
 
-      // if(edit){
+      if(edit){
 
          let filterEdit = list.filter((li, listIndex) => {
              return listIndex !== crntIndex
@@ -25,21 +25,21 @@ function App() {
 
       setList([...filterEdit, {item:inputValue, done:false}])
       setInputValue("")
-      //    setEdit(false)
+         setEdit(false)
          
-      // }else { 
+      }else { 
       setList([...list, {item:inputValue, done:false}])
       setInputValue("")
-      // }
+      }
  
   }
  
 
 //---------------------------------EDITING LIST-------------------------------//
-  function handleEdit(e,index, li){
+  function handleEdit(e, index, li){
      e.preventDefault()
      console.log(li.item)
-    //  setInputValue(value)
+     setInputValue(li.item)
      setEdit(true)
      setCrntIndex(index)
   }
@@ -58,24 +58,25 @@ function handleDlt(e, index){
 
 //------------------------------------COMPLETE FROM LIST------------------------//
 
-// function handleComplete(e, index){
-//   e.preventDefault();
-//   setIsDone((index === doneList[index]) ? true : false)
-//     if(!isDone){ 
-//       setDoneList([...doneList, index])
-//       console.log("i am good")
-//     }
-//     else{
+function handleComplete(e, index){
+  
+  e.preventDefault();
+  setIsDone((index === doneList[index]) ? true : false)
+    if(!isDone){ 
+      setDoneList([...doneList, index])
+      console.log("i am good")
+    }
+    else{
      
-//       const filterCrossLine = list.filter((li, listIndex) => {
-//           return listIndex !== index
-//       })
-// console.log(filterCrossLine)
-// console.log("how are you")
-//       setDoneList(filterCrossLine)
-//     }
+      const filterCrossLine = list.filter((li, listIndex) => {
+          return listIndex !== index
+      })
+console.log(filterCrossLine)
+console.log("how are you")
+      setDoneList(filterCrossLine)
+    }
 
-// } 
+} 
 
 
 
@@ -98,7 +99,7 @@ function handleDlt(e, index){
                       <li key={index}>{li.item}
                       <button onClick={(e) => handleEdit(e, index, li)}>Edit</button> 
                       <button onClick={e=>{handleDlt(e, index)}}>Delete</button>
-
+                       <button onClick={e=>{handleComplete(e, index, li)}}>{(isDone) ? "Undo": "Done"}</button>
                       </li>
                     )
                  })
