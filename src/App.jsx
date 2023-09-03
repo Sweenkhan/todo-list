@@ -1,17 +1,16 @@
 import React,{ useState } from 'react' 
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import DoneIcon from '@mui/icons-material/Done';
+// import DoneIcon from '@mui/icons-material/Done';
 import './App.css'
 
-
+ 
 
 function App() { 
   
   const [inputValue, setInputValue] = useState("")
   const [list, setList] = useState([]);
-  const [edit, setEdit] = useState(false);
-  // const [isDone, setIsDone] = useState(false);
+  const [edit, setEdit] = useState(false); 
   const [doneList, setDoneList] = useState([])
   const [crntIndex, setCrntIndex] = useState(0);
 
@@ -67,8 +66,7 @@ function handleComplete(e, index, li){
   const filterCrossLine = list.filter((li, listIndex) => {
     return listIndex !== index
   }) 
-
-
+ 
   if(li.isDone === true) {
     li.isDone = false 
     setList([...filterCrossLine, li])
@@ -79,13 +77,9 @@ function handleComplete(e, index, li){
     setList([...filterCrossLine, li])
   }
       
-
 } 
 
-
-
-
- console.log(list)
+ 
 
   return ( 
       <div className='container'>  
