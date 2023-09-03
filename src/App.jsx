@@ -1,4 +1,7 @@
 import React,{ useState } from 'react' 
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import DoneIcon from '@mui/icons-material/Done';
 import './App.css'
 
 
@@ -8,7 +11,7 @@ function App() {
   const [inputValue, setInputValue] = useState("")
   const [list, setList] = useState([]);
   const [edit, setEdit] = useState(false);
-  const [isDone, setIsDone] = useState(false);
+  // const [isDone, setIsDone] = useState(false);
   const [doneList, setDoneList] = useState([])
   const [crntIndex, setCrntIndex] = useState(0);
 
@@ -23,12 +26,12 @@ function App() {
              return listIndex !== crntIndex
          })
 
-      setList([...filterEdit, {item:inputValue, done:false}])
+      setList([...filterEdit, {item:inputValue, isDone:false}])
       setInputValue("")
          setEdit(false)
          
       }else { 
-      setList([...list, {item:inputValue, done:false}])
+      setList([...list, {item:inputValue, isDone:false}])
       setInputValue("")
       }
  
@@ -58,23 +61,24 @@ function handleDlt(e, index){
 
 //------------------------------------COMPLETE FROM LIST------------------------//
 
-function handleComplete(e, index){
-  
+function handleComplete(e, index, li){ 
   e.preventDefault();
-  setIsDone((index === doneList[index]) ? true : false)
-    if(!isDone){ 
-      setDoneList([...doneList, index])
-      console.log("i am good")
-    }
-    else{
-     
-      const filterCrossLine = list.filter((li, listIndex) => {
-          return listIndex !== index
-      })
-console.log(filterCrossLine)
-console.log("how are you")
-      setDoneList(filterCrossLine)
-    }
+
+  const filterCrossLine = list.filter((li, listIndex) => {
+    return listIndex !== index
+  }) 
+
+
+  if(li.isDone === true) {
+    li.isDone = false 
+    setList([...filterCrossLine, li])
+  } else {
+
+    li.isDone = true 
+    console.log("i am good") 
+    setList([...filterCrossLine, li])
+  }
+      
 
 } 
 
@@ -88,7 +92,7 @@ console.log("how are you")
            <h2>Make Your List.</h2>
            <div className='form'> 
            <input placeholder="Write Your to do..." type='text' value={inputValue} onChange={(e) => {setInputValue(e.target.value)}}></input>
-           <button onClick={e => handleClick(e)}>Add</button>
+           <button className="addBtn" onClick={e => handleClick(e)}>Add</button>
            </div>
 
            <div className='todos'>
@@ -96,10 +100,13 @@ console.log("how are you")
               {
                  list.map((li, index) => {
                     return (
-                      <li key={index}>{li.item}
-                      <button onClick={(e) => handleEdit(e, index, li)}>Edit</button> 
-                      <button onClick={e=>{handleDlt(e, index)}}>Delete</button>
-                       <button onClick={e=>{handleComplete(e, index, li)}}>{(isDone) ? "Undo": "Done"}</button>
+                      <li key={index} style={{textDecoration: (li.isDone) ? "line-through" : "none"}}>
+                      {li.item} 
+                      <span> 
+                      <button className='editBtn' onClick={(e) => handleEdit(e, index, li)}><EditIcon /></button> 
+                      <button className="deleteBtn" onClick={e=>{handleDlt(e, index)}}><DeleteIcon /></button>
+                      <button className="doneBtn" onClick={e=>{handleComplete(e, index, li)}}>{(li.isDone) ? "Undo": "Done"}</button>
+                      </span>
                       </li>
                     )
                  })
