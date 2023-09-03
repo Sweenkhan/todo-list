@@ -69,12 +69,12 @@ function handleComplete(e, index, li){
  
   if(li.isDone === true) {
     li.isDone = false 
-    setList([...filterCrossLine, li])
+    setList([li, ...filterCrossLine])
   } else {
 
     li.isDone = true 
     console.log("i am good") 
-    setList([...filterCrossLine, li])
+    setList([li, ...filterCrossLine])
   }
       
 } 
