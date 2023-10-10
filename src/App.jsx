@@ -13,6 +13,7 @@ function App() {
   const [crntIndex, setCrntIndex] = useState(0);
 
 
+  
 //--------------------------------------ADDING TO LIST---------------------------//
   function handleClick(e){
       e.preventDefault(); 
