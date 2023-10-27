@@ -38,7 +38,7 @@ body{
 .batterySpan .clr{ 
   position: absolute;
   top: 16px;
-  left: 8px;
+  left: 7px;
   z-index: -1;
   /* width: 25px; */
   height: 12px;
