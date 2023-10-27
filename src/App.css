@@ -63,6 +63,7 @@ h1{
  flex-direction: column;
  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.9);
  margin: 0 15px;
+ position: relative;
 }
 
 .container h2{
@@ -140,5 +141,25 @@ h1{
 }
 
 
-
+.btns{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  right: 15px;
+  bottom: 10px;
+  left: 15px;
+}
  
+.btns button{
+  background-color: mediumseagreen;
+  font-weight: bold;
+  padding: 5px 10px;
+  cursor: pointer;
+  border: none;
+}
+
+.btns button:hover {
+  background-color: green;
+  color: white;
+}

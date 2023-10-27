@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import Battery0BarIcon from "@mui/icons-material/Battery0Bar";
+import { jsPDF } from "jspdf";
+import "jspdf-autotable";
 import "./App.css";
 
 function App() {
@@ -12,9 +14,8 @@ function App() {
   const [crntIndex, setCrntIndex] = useState(0);
   const [batteryLevel, setBatteryLevel] = useState(0);
   const [currentTime, setCurrentTime] = useState(new Date());
-  
-  const istOptions = { timeZone: "Asia/Kolkata" };
 
+  const istOptions = { timeZone: "Asia/Kolkata" };
 
   //--------------------------------------ADDING TO LIST---------------------------//
   function handleClick(e) {
@@ -32,6 +33,7 @@ function App() {
       setList([...list, { item: inputValue, isDone: false }]);
       setInputValue("");
     }
+    console.log(list);
   }
 
   //---------------------------------EDITING LIST-------------------------------//
@@ -75,7 +77,6 @@ function App() {
   //---------------------------- for devices battery check--------------------
   useEffect(() => {
     navigator.getBattery().then((battery) => {
-      
       // Update the battery level
       setBatteryLevel(battery.level * 100);
       battery.addEventListener("levelchange", () => {
@@ -83,7 +84,6 @@ function App() {
       });
     });
   }, []);
-
 
   // -------------------------Update the current time every second
   useEffect(() => {
@@ -94,20 +94,68 @@ function App() {
     // Cleanup the interval when the component unmounts
     return () => clearInterval(intervalId);
   }, []);
+
+  //----------------------------export data ----------------------
+  // function createHeaders(keys) {
+  //   const result = [];
+
+  //   for (let key of keys) {
+  //     result.push({
+  //       id: key,
+  //       name: key,
+  //       done: key,
+  //     });
+  //   }
+
+  //   return result;
+  // }
+
+
+  async function exportData() {
+    // const headers = createHeaders(["id", "name", "done"]);
+     const headers =  ["id", "name", "done"] ;
+
+
+    const doc = new jsPDF();
+
+    const tableData = list.map((row, index) => ({
+      ...row,
+      id: (index + 1).toString(),
+      name: row.item.toString(),
+      done: row.isDone.toString(),
+    }));
+
+    doc.table(1, 1, tableData, headers, { autoSize: true });
+
+    doc.save("todoData.pdf");
+  }
+
+
+//------------------------------------CLEAR ALL TODOS-----------------
+
  
-
-
 
   return (
     <div>
       <div className="toper">
-        <div className="left"> 
+        <div className="left">
           <p>{currentTime.toLocaleTimeString("en-IN", istOptions)}</p>
         </div>
         <div className="right">
           {" "}
           <span className="batterySpan">
-            <span className="clr" style={{ width: batteryLevel * 0.25, backgroundColor: (batteryLevel <= 20) ? "yellow" : (batteryLevel <= 20) ? "red" : "white"}}></span>
+            <span
+              className="clr"
+              style={{
+                width: batteryLevel * 0.25,
+                backgroundColor:
+                  batteryLevel <= 20
+                    ? "yellow"
+                    : batteryLevel <= 20
+                    ? "red"
+                    : "white",
+              }}
+            ></span>
             <Battery0BarIcon className="battery" sx={{ fontSize: 44 }} />{" "}
             {batteryLevel && batteryLevel}%{" "}
           </span>
@@ -170,24 +218,15 @@ function App() {
             })}
           </ul>
         </div>
-
-        <div className="todo-list">
-          {/* <ul>
-
-              {
-               list &&   list.map((value, index) => {
-                    return (
-                      <li key={index}  
-                      style={{textDecoration: index === doneList[index] ?  'line-through' : 'none'}}>{value}
-                    <button onClick={(e) => handleEdit(e, value, index)}>Edit</button> 
-                    <button onClick={e=>{handleDlt(e, index)}}>Delete</button>
-                    <button onClick={(e) => {handleComplete(e, index)}}>{ (index === doneList[index]) ? "Undo": "Done"}</button>
-                    </li> 
-                    )
-                  })
-              }
-
-            </ul> */}
+        <div className="btns">
+       {(list.length > 1) && <button className="exportBtn"
+          onClick={() => {
+            exportData();
+          }}
+        >
+          Export
+        </button>}
+        {(list.length > 1)&&  <button onClick={(e) => {setList([])}}>Clear</button>}
         </div>
       </div>
     </div>
