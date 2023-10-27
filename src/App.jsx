@@ -107,7 +107,7 @@ function App() {
         <div className="right">
           {" "}
           <span className="batterySpan">
-            <span className="clr" style={{ width: batteryLevel * 0.25, backgroundColor: (batteryLevel * 0.25 < 21) ? "yellow" : (batteryLevel * 0.25 < 11) ? "red" : "white"}}></span>
+            <span className="clr" style={{ width: batteryLevel * 0.25, backgroundColor: (batteryLevel <= 20) ? "yellow" : (batteryLevel <= 20) ? "red" : "white"}}></span>
             <Battery0BarIcon className="battery" sx={{ fontSize: 44 }} />{" "}
             {batteryLevel && batteryLevel}%{" "}
           </span>
