@@ -62,7 +62,7 @@ h1{
  padding: 15px; 
  flex-direction: column;
  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.9);
- margin: 0 15px;
+ margin: 0 20px;
  position: relative;
 }
 
@@ -105,17 +105,23 @@ h1{
   list-style-type: none;
   background-color: black;
   color: white;
-  padding: 0.5rem;
-  font-size: 1rem;
+  padding: 0.5rem; 
   margin-bottom: 10px;
   font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.container ul span{
-  float: right;
-  padding-left: 10px; 
-  position: relative;
-  top: -5px;
+.container ul li .content{
+  /* text-align: justify; */
+  font: 1.3rem sans-serif;
+}
+ 
+.container ul li .listBtn{
+  display: flex;
+  flex-direction: row;
+  max-height: 2rem;
 }
 
 .container ul span button {
@@ -134,10 +140,9 @@ h1{
 .container span .doneBtn{
   font-size: 0.9rem;
   font-weight: 700;
-  padding: 0.350rem;
+  padding: 0.300rem;
   margin-top: 0;
-  position: relative;
-  top: -6px;
+  
 }
 
 

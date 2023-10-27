@@ -182,19 +182,22 @@ function App() {
           <ul>
             {list.map((li, index) => {
               return (
-                <li
-                  key={index}
+                <li 
+                  key={index}>
+                  <span 
+                  className="content"
                   style={{
                     textDecoration: li.isDone ? "line-through" : "none",
-                  }}
-                >
+
+                  }}>
                   {li.item}
-                  <span>
+                  </span>
+                  <span className="listBtn">
                     <button
                       className="editBtn"
                       onClick={(e) => handleEdit(e, index, li)}
                     >
-                      <EditIcon />
+                      <EditIcon sx={{ fontSize: 22 }}/>
                     </button>
                     <button
                       className="deleteBtn"
@@ -202,7 +205,7 @@ function App() {
                         handleDlt(e, index);
                       }}
                     >
-                      <DeleteIcon />
+                      <DeleteIcon sx={{ fontSize: 22 }}/>
                     </button>
                     <button
                       className="doneBtn"
