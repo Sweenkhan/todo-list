@@ -61,7 +61,7 @@ h1{
  display: flex;
  padding: 15px; 
  flex-direction: column;
- box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.9);
+ box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.8);
  margin: 0 20px;
  position: relative;
 }
@@ -142,7 +142,6 @@ h1{
   font-weight: 700;
   padding: 0.300rem;
   margin-top: 0;
-  
 }
 
 
