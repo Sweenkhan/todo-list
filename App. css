@@ -40,7 +40,6 @@ body{
   top: 16px;
   left: 7px;
   z-index: -1;
-  /* width: 25px; */
   height: 12px;
   background-color: white;
 }
