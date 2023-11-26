@@ -4,7 +4,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import Battery0BarIcon from "@mui/icons-material/Battery0Bar";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
-import "./App.css";
+import "../App.css";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
