@@ -26,6 +26,7 @@ function App() {
         return listIndex !== crntIndex;
       });
 
+      
       setList([...filterEdit, { item: inputValue, isDone: false }]);
       setInputValue("");
       setEdit(false);
