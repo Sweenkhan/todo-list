@@ -36,7 +36,7 @@ function App() {
     console.log(list);
   }
 
-  
+
   //---------------------------------EDITING LIST-------------------------------//
   function handleEdit(e, index, li) {
     e.preventDefault();
