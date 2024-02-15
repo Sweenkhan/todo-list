@@ -25,7 +25,6 @@ function App() {
       let filterEdit = list.filter((li, listIndex) => {
         return listIndex !== crntIndex;
       });
-
       setList([...filterEdit, { item: inputValue, isDone: false }]);
       setInputValue("");
       setEdit(false);
