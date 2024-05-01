@@ -34,8 +34,6 @@ body{
 .batterySpan .battery{  
   transform: rotate(0.25turn); 
 }
-
-
 .batterySpan .clr{ 
   position: absolute;
   top: 16px;
